@@ -1,3 +1,4 @@
+/* Global */
 .dark {
 	filter: invert(1) !important;
 	backdrop-filter: invert(1) !important;
@@ -5,8 +6,59 @@
 body, html {
 	background: #FFF;
 	color: #333;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
-	width: 21cm;
-	height: 29.7cm;
+	width: 210mm;
+	height: 297mm;
+	font-size: 4mm;
+}
+
+/* Layout */
+.lr, .tb {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	flex-grow: 1;
+	flex: 1 1 0;
+	width: 100%;
+}
+.lr {
+	flex-direction: row;
+}
+.tb {
+	flex-direction: column;
+}
+
+/* Top */
+.top {
+	align-items: flex-end;
+	background: #D3D3D3;
+	flex-wrap: wrap;
+}
+.top i {
+	font-size: 48mm;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 1000px;
+	border: 2px solid #BBB;
+}
+.top .specialization-summary {
+	margin-left: 66mm;
+}
+
+/* Left */
+.sidebar {
+	background: #CCC;
+	width: 100%;
+	max-width: 64mm;
+}
+.github > img {
+	width: 8mm;
+	height: 8mm;
+	opacity: .3;
+}
+
+/* Right */
+.content {
+	background: #DDD;
 }
