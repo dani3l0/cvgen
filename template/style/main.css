@@ -1,6 +1,12 @@
+.dark {
+	filter: invert(1) !important;
+	backdrop-filter: invert(1) !important;
+}
 body, html {
+	background: #FFF;
+	color: #333;
 	margin: 0;
-	background: #000;
-	color: #FFF;
 	padding: 0;
+	width: 21cm;
+	height: 29.7cm;
 }
