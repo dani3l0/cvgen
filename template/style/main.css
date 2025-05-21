@@ -12,7 +12,6 @@ body, html {
 	height: 297mm;
 	font-size: 4mm;
 	font-family: sans-serif;
-	overflow: hidden;
 }
 
 /* Layout */
@@ -76,14 +75,19 @@ body, html {
 	display: flex;
 	margin: 2mm 0;
 }
-.sidebar .section .item i {
-	margin-right: 2mm;
+.sidebar .section .item > i {
 	border-radius: 10cm;
 	color: #422;
-	padding: 2mm;
+	padding: 2mm 4mm 2mm 1mm;
 }
 .sidebar .section .item .value {
 	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+.sidebar .section .item .value > i {
+	font-size: 4mm;
+	margin-right: 1mm;
 }
 .sidebar .section .item .desc {
 	opacity: .5;
@@ -96,19 +100,22 @@ body, html {
 .sidebar .github {
 	margin-top: 12mm;
 	display: flex;
+	opacity: .75;
 	align-items: center;
 	text-align: right;
 	margin-left: auto;
 	font-weight: bold;
+	font-size: 3.75mm;
 }
 .sidebar .github .b {
 	font-weight: bold;
 	opacity: .5;
-	font-size: 3.25mm;
+	font-size: 3mm;
 }
 .sidebar .github img {
 	width: 8mm;
 	height: 8mm;
+	margin-left: 2mm;
 	opacity: .3;
 }
 
