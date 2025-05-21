@@ -11,6 +11,8 @@ body, html {
 	width: 210mm;
 	height: 297mm;
 	font-size: 4mm;
+	font-family: sans-serif;
+	overflow: hidden;
 }
 
 /* Layout */
@@ -29,36 +31,92 @@ body, html {
 	flex-direction: column;
 }
 
-/* Top */
-.top {
-	align-items: flex-end;
-	background: #D3D3D3;
-	flex-wrap: wrap;
-}
-.top i {
-	font-size: 48mm;
-	margin: 10px;
-	padding: 10px;
-	border-radius: 1000px;
-	border: 2px solid #BBB;
-}
-.top .specialization-summary {
-	margin-left: 66mm;
+/* Common */
+.section .name {
+	letter-spacing: .5mm;
+	font-weight: bold;
+	margin: 8mm 0 3mm;
+	font-size: 5mm;
+	font-family: monospace;
 }
 
 /* Left */
 .sidebar {
 	background: #CCC;
 	width: 100%;
+	padding: 4mm;
 	max-width: 64mm;
 }
-.github > img {
+.sidebar .profile-pic {
+	width: 100%;
+	text-align: center;
+}
+.sidebar .profile-pic i {
+	font-size: 40mm;
+	margin: 40px auto 20px;
+	padding: 4px;
+	border-radius: 1000px;
+	border: 1mm solid #BBB;
+}
+.sidebar .section {
+	position: relative;
+}
+.sidebar .section .item {
+	display: flex;
+	margin: 2mm 0;
+}
+.sidebar .section .item i {
+	margin-right: 2mm;
+	border-radius: 10cm;
+	color: #422;
+	padding: 2mm;
+}
+.sidebar .section .item .value {
+	font-weight: bold;
+}
+.sidebar .section .item .desc {
+	opacity: .5;
+	font-size: 3mm;
+	font-weight: bold;
+}
+.sidebar .contact {
+	font-family: monospace;
+}
+.sidebar .github {
+	font-weight: bold;
+}
+.sidebar .github .b {
+	font-weight: bold;
+	opacity: .5;
+	font-size: 3.25mm;
+}
+.sidebar .github img {
 	width: 8mm;
 	height: 8mm;
 	opacity: .3;
+}
+.sidebar .github {
+	margin-top: 12mm;
+	display: flex;
+	align-items: center;
+	text-align: right;
+	margin-left: auto;
 }
 
 /* Right */
 .content {
 	background: #DDD;
+	padding: 4mm;
+}
+
+.content .full-name {
+	margin-top: 12mm;
+	font-size: 16mm;
+}
+.content .specialization-summary {
+	font-size: 4mm;
+	font-weight: bold;
+	margin: 1mm 0 4mm;
+	opacity: .65;
+	letter-spacing: .1mm;
 }
