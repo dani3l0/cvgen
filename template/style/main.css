@@ -33,11 +33,25 @@ body, html {
 
 /* Common */
 .section .name {
-	letter-spacing: .5mm;
+	letter-spacing: .25mm;
 	font-weight: bold;
-	margin: 8mm 0 3mm;
+	margin: 6mm 0 1mm;
 	font-size: 5mm;
 	font-family: monospace;
+	position: relative;
+	display: inline-block;
+	z-index: 5;
+}
+.section .name::before {
+	content: " ";
+	position: absolute;
+	bottom: 0;
+	left: -1mm;
+	width: calc(100% + 2mm);
+	height: 50%;
+	z-index: -1;
+	background: #F99;
+	border-radius: 3mm 1cm 3mm 1cm;
 }
 
 /* Left */
@@ -57,9 +71,6 @@ body, html {
 	padding: 4px;
 	border-radius: 1000px;
 	border: 1mm solid #BBB;
-}
-.sidebar .section {
-	position: relative;
 }
 .sidebar .section .item {
 	display: flex;
@@ -83,6 +94,11 @@ body, html {
 	font-family: monospace;
 }
 .sidebar .github {
+	margin-top: 12mm;
+	display: flex;
+	align-items: center;
+	text-align: right;
+	margin-left: auto;
 	font-weight: bold;
 }
 .sidebar .github .b {
@@ -94,13 +110,6 @@ body, html {
 	width: 8mm;
 	height: 8mm;
 	opacity: .3;
-}
-.sidebar .github {
-	margin-top: 12mm;
-	display: flex;
-	align-items: center;
-	text-align: right;
-	margin-left: auto;
 }
 
 /* Right */
