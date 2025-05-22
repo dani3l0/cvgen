@@ -8,13 +8,30 @@
 }
 body, html {
 	background: #FFF;
-	color: #333;
+	color: #444;
 	margin: 0 auto;
 	padding: 0;
-	width: 210mm;
-	height: 297mm;
-	font-size: 4mm;
-	font-family: sans-serif;
+	min-width: 210mm;
+	max-width: 210mm;
+	min-height: 297mm;
+	max-height: 297mm;
+	font-size: 3.25mm;
+	font-weight: 500;
+	font-family: "Manrope";
+}
+body {
+	background: url(../img/background.svg) repeat;
+	background-size: 50%;
+}
+.background {
+	position: fixed;
+	top: -5%;
+	left: -15%;
+	width: 150%;
+	height: 150%;
+	border-radius: 0 25cm 0 0;
+	background: #FFF;
+	box-shadow: 2mm -2mm 4mm #0001;
 }
 
 /* Layout */
@@ -42,7 +59,7 @@ body, html {
 	letter-spacing: .4mm;
 	font-weight: bold;
 	margin: 2mm 0 1mm;
-	font-size: 6mm;
+	font-size: 5mm;
 	font-family: "Advent Pro";
 	position: relative;
 	display: inline-block;
@@ -65,7 +82,7 @@ body, html {
 	width: 100%;
 	height: 100%;
 	padding: 4mm;
-	max-width: 64mm;
+	max-width: 62mm;
 	z-index: 1;
 }
 .sidebar .profile-pic {
@@ -81,20 +98,20 @@ body, html {
 }
 .sidebar .section {
 	border: 1mm solid #FB0;
-	border-radius: 0 16mm 16mm 0;
+	border-radius: 0 24mm 6mm 0;
 	border-left: none;
 	overflow: hidden;
 	margin: 3mm 0 3mm -4mm;
-	padding-left: 4mm;
+	padding: 1mm 2mm 0 4mm;
 }
 .sidebar .section .item {
 	display: flex;
-	margin: 2mm 0;
+	margin: 3mm 0;
 }
 .sidebar .section .item > i {
 	border-radius: 10cm;
 	color: #422;
-	padding: 2mm 4mm 2mm 1mm;
+	padding-right: 4mm;
 }
 .sidebar .section .item .value {
 	font-weight: bold;
@@ -107,11 +124,12 @@ body, html {
 }
 .sidebar .section .item .desc {
 	opacity: .5;
-	font-size: 3mm;
+	font-size: 2.75mm;
 	font-weight: bold;
 }
-.sidebar .contact {
-	font-family: monospace;
+.sidebar .contact .value {
+	font-family: "Lekton";
+	font-size: 3.5mm;
 }
 .sidebar .github {
 	margin-top: 12mm;
@@ -141,15 +159,22 @@ body, html {
 	padding: 4mm;
 }
 .content .full-name {
-	margin-top: 12mm;
+	margin: 10mm 0 2mm;
+	line-height: 1.1;
 	font-size: 16mm;
+	font-family: "Jura";
+	font-weight: 600;
+}
+.content .full-name div::after {
+	content: "_";
+	opacity: .25;
 }
 .content .specialization-summary {
 	font-size: 4mm;
 	font-weight: bold;
+	font-family: "Lekton";
 	margin: 1mm 0 4mm;
 	opacity: .65;
-	letter-spacing: .1mm;
 }
 .skills {
 	display: flex;
@@ -162,9 +187,9 @@ body, html {
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
-	background: linear-gradient(-45deg, hsl(var(--color), 100%, 99%), hsl(var(--color), 100%, 97%));
+	background: linear-gradient(-30deg, hsl(var(--color), 100%, 95%) 5%, hsl(var(--color), 100%, 99%));
 	border: 1mm solid hsl(var(--color), 100%, 92%);
-	color: hsl(var(--color), 100%, 12%);
+	color: hsl(var(--color), 100%, 15%);
 	padding: 3mm;
 	border-radius: 2mm;
 	z-index: 2;
@@ -200,11 +225,11 @@ body, html {
 .skills .title i {
 	position: absolute;
 	margin-right: 2mm;
-	color: #000;
+	color: hsl(var(--color), 100%, 20%);
 	font-size: 24mm;
-	opacity: .12;
+	opacity: .15;
 	height: 8mm;
-	z-index: -1;
+	z-index: 1;
 	top: -7mm;
 	left: -7mm;
 }
@@ -213,6 +238,9 @@ body, html {
 	margin: .25mm auto 1mm;
 	text-align: center;
 }
+.skills .text {
+	font-size: 2.75mm;
+}
 .skills .bubbles {
 	overflow: hidden;
 	margin: 2mm 0 .25mm;
@@ -220,7 +248,7 @@ body, html {
 	display: inline-flex;
 }
 .skills .bubbles div {
-	font-size: 2.5mm;
+	font-size: 2.25mm;
 	padding: 1mm 1.5mm;
 	background: hsl(var(--color), 100%, 80%);
 	display: inline-block;
@@ -242,9 +270,9 @@ body, html {
 	font-weight: bold;
 	opacity: .333;
 	position: absolute;
-	bottom: 4mm;
+	top: 285mm;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translate(-50%, -100%);
 }
 .policy i {
 	font-size: 6.5mm;
