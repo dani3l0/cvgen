@@ -124,7 +124,6 @@ body, html {
 	background: #DDD;
 	padding: 4mm;
 }
-
 .content .full-name {
 	margin-top: 12mm;
 	font-size: 16mm;
@@ -135,4 +134,71 @@ body, html {
 	margin: 1mm 0 4mm;
 	opacity: .65;
 	letter-spacing: .1mm;
+}
+.personality-grid {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin: 4mm 0;
+	padding: 0 1mm;
+	overflow: hidden;
+	text-align: center;
+	border-radius: 5mm;
+	border: .5mm solid #888;
+}
+.personality-grid > div {
+	padding: 4mm 1mm;
+}
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2mm 3mm;
+	border: .5mm solid #888;
+	border-radius: 5mm;
+	margin: 4mm 0;
+}
+.skills > div {
+	flex: 1;
+	margin: 2mm 1mm;
+}
+.skills .title {
+	display: flex;
+	align-items: flex-end;
+}
+.skills .title i {
+	margin-right: 2mm;
+}
+.skills .bubbles {
+	overflow: hidden;
+	margin: 2mm 0;
+	border-radius: 10cm;
+	display: inline-flex;
+}
+.skills .bubbles div {
+	font-size: 2.5mm;
+	padding: 1mm 1.5mm;
+	background: #0F8;
+	display: inline-block;
+	margin: .25mm;
+	font-weight: bold;
+	color: #000B;
+	border-radius: .75mm;
+}
+.skills .bubbles div:first-child {
+	margin-left: 0;
+}
+.skills .bubbles div:last-child {
+	margin-right: 0;
+}
+.policy {
+	display: flex;
+	align-items: center;
+	font-size: 3.25mm;
+	font-weight: bold;
+	margin-top: 2cm;
+	opacity: .333;
+}
+.policy i {
+	font-size: 6.5mm;
+	margin-right: 2mm;
 }
