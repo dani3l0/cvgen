@@ -188,7 +188,7 @@ body {
 	--color: 23;
 	--margin: 1mm;
 	background: linear-gradient(-30deg, hsl(var(--color), 100%, 95%) 5%, hsl(var(--color), 100%, 99%));
-	border: 1mm solid hsl(var(--color), 100%, 92%);
+	border: 1mm solid hsl(var(--color), 100%, 95%);
 	color: hsl(var(--color), 100%, 15%);
 	padding: 3mm;
 	border-radius: 2mm;
