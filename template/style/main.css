@@ -55,10 +55,10 @@ body, html {
 
 /* Left */
 .sidebar {
-	background: #CCC;
 	width: 100%;
 	padding: 4mm;
 	max-width: 64mm;
+	background: #EEE;
 }
 .sidebar .profile-pic {
 	width: 100%;
@@ -121,7 +121,6 @@ body, html {
 
 /* Right */
 .content {
-	background: #DDD;
 	padding: 4mm;
 }
 .content .full-name {
@@ -152,37 +151,70 @@ body, html {
 .skills {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 2mm 3mm;
-	border: .5mm solid #888;
-	border-radius: 5mm;
+	border-radius: 8mm;
+	overflow: hidden;
 	margin: 4mm 0;
 }
 .skills > div {
 	flex: 1;
-	margin: 2mm 1mm;
+	--color: 23;
+	--margin: 1mm;
+	background: linear-gradient(-45deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 93%));
+	color: hsl(var(--color), 100%, 12%);
+	padding: 3mm;
+	border-radius: 1.5mm;
+	z-index: 2;
+	min-width: 40%;
+	overflow: hidden;
+}
+.skills .b1 {
+	margin-bottom: var(--margin);
+	margin-right: var(--margin);
+}
+.skills .b2 {
+	margin-bottom: var(--margin);
+}
+.skills .b3 {
+	margin-right: var(--margin);
 }
 .skills .title {
 	display: flex;
+	font-weight: bold;
 	align-items: flex-end;
+	letter-spacing: .1mm;
+	position: relative;
 }
 .skills .title i {
+	position: absolute;
 	margin-right: 2mm;
+	color: #000;
+	font-size: 24mm;
+	opacity: .12;
+	height: 8mm;
+	z-index: -1;
+	top: -7mm;
+	left: -7mm;
+}
+.skills .title div {
+	display: block;
+	margin: .25mm auto 1mm;
+	text-align: center;
 }
 .skills .bubbles {
 	overflow: hidden;
-	margin: 2mm 0;
-	border-radius: 10cm;
+	margin: 2mm 0 .25mm;
+	border-radius: 8mm;
 	display: inline-flex;
 }
 .skills .bubbles div {
 	font-size: 2.5mm;
 	padding: 1mm 1.5mm;
-	background: #0F8;
+	background: hsl(var(--color), 100%, 80%);
 	display: inline-block;
-	margin: .25mm;
+	margin: 0 .2mm;
 	font-weight: bold;
 	color: #000B;
-	border-radius: .75mm;
+	border-radius: .5mm;
 }
 .skills .bubbles div:first-child {
 	margin-left: 0;
@@ -195,8 +227,11 @@ body, html {
 	align-items: center;
 	font-size: 3.25mm;
 	font-weight: bold;
-	margin-top: 2cm;
 	opacity: .333;
+	position: absolute;
+	bottom: 4mm;
+	left: 50%;
+	transform: translateX(-50%);
 }
 .policy i {
 	font-size: 6.5mm;
