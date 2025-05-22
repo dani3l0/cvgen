@@ -34,10 +34,14 @@ body, html {
 }
 
 /* Common */
+.section {
+	width: 100%;
+	padding: 2mm 0;
+}
 .section .name {
 	letter-spacing: .4mm;
 	font-weight: bold;
-	margin: 6mm 0 1mm;
+	margin: 2mm 0 1mm;
 	font-size: 6mm;
 	font-family: "Advent Pro";
 	position: relative;
@@ -77,9 +81,11 @@ body, html {
 }
 .sidebar .section {
 	border: 1mm solid #FB0;
-	border-radius: 0 2cm 2cm 0;
+	border-radius: 0 16mm 16mm 0;
 	border-left: none;
 	overflow: hidden;
+	margin: 3mm 0 3mm -4mm;
+	padding-left: 4mm;
 }
 .sidebar .section .item {
 	display: flex;
@@ -156,23 +162,30 @@ body, html {
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
-	background: linear-gradient(-45deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 94%));
+	background: linear-gradient(-45deg, hsl(var(--color), 100%, 99%), hsl(var(--color), 100%, 97%));
+	border: 1mm solid hsl(var(--color), 100%, 92%);
 	color: hsl(var(--color), 100%, 12%);
 	padding: 3mm;
-	border-radius: 1.5mm;
+	border-radius: 2mm;
 	z-index: 2;
 	min-width: 40%;
 	overflow: hidden;
 }
 .skills .b1 {
+	border-top-left-radius: inherit;
 	margin-bottom: var(--margin);
 	margin-right: var(--margin);
 }
 .skills .b2 {
+	border-top-right-radius: inherit;
 	margin-bottom: var(--margin);
 }
 .skills .b3 {
+	border-bottom-left-radius: inherit;
 	margin-right: var(--margin);
+}
+.skills .b4 {
+	border-bottom-right-radius: inherit;
 }
 .skills .title {
 	display: flex;
