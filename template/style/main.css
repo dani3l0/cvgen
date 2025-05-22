@@ -56,6 +56,7 @@ body, html {
 /* Left */
 .sidebar {
 	width: 100%;
+	height: 100%;
 	padding: 4mm;
 	max-width: 64mm;
 	background: #EEE;
@@ -134,20 +135,6 @@ body, html {
 	opacity: .65;
 	letter-spacing: .1mm;
 }
-.personality-grid {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	margin: 4mm 0;
-	padding: 0 1mm;
-	overflow: hidden;
-	text-align: center;
-	border-radius: 5mm;
-	border: .5mm solid #888;
-}
-.personality-grid > div {
-	padding: 4mm 1mm;
-}
 .skills {
 	display: flex;
 	flex-wrap: wrap;
@@ -159,7 +146,7 @@ body, html {
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
-	background: linear-gradient(-45deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 93%));
+	background: linear-gradient(-45deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 94%));
 	color: hsl(var(--color), 100%, 12%);
 	padding: 3mm;
 	border-radius: 1.5mm;
