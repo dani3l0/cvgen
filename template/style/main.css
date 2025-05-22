@@ -1,3 +1,6 @@
+@import url(fonts/fonts.css);
+@import url(material-icons/material-icons.css);
+
 /* Global */
 .dark {
 	filter: invert(1) !important;
@@ -32,11 +35,11 @@ body, html {
 
 /* Common */
 .section .name {
-	letter-spacing: .25mm;
+	letter-spacing: .4mm;
 	font-weight: bold;
 	margin: 6mm 0 1mm;
-	font-size: 5mm;
-	font-family: monospace;
+	font-size: 6mm;
+	font-family: "Advent Pro";
 	position: relative;
 	display: inline-block;
 	z-index: 5;
@@ -59,7 +62,7 @@ body, html {
 	height: 100%;
 	padding: 4mm;
 	max-width: 64mm;
-	background: #EEE;
+	z-index: 1;
 }
 .sidebar .profile-pic {
 	width: 100%;
@@ -70,7 +73,13 @@ body, html {
 	margin: 40px auto 20px;
 	padding: 4px;
 	border-radius: 1000px;
-	border: 1mm solid #BBB;
+	border: 1mm solid #BBB8;
+}
+.sidebar .section {
+	border: 1mm solid #FB0;
+	border-radius: 0 2cm 2cm 0;
+	border-left: none;
+	overflow: hidden;
 }
 .sidebar .section .item {
 	display: flex;
@@ -122,6 +131,7 @@ body, html {
 
 /* Right */
 .content {
+	z-index: 1;
 	padding: 4mm;
 }
 .content .full-name {
@@ -170,6 +180,9 @@ body, html {
 	align-items: flex-end;
 	letter-spacing: .1mm;
 	position: relative;
+	font-size: 5.5mm;
+	margin: -1mm 0 -.75mm;
+	font-family: "Smooch Sans";
 }
 .skills .title i {
 	position: absolute;
