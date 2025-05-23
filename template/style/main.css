@@ -18,11 +18,19 @@ body, html {
 	font-size: 3.25mm;
 	font-weight: 500;
 	font-family: "Manrope";
-	overflow: hidden;
 }
-body {
+.background-image {
 	background: url(../img/background.svg) repeat;
-	background-size: 50%;
+	background-size: 100%;
+	background-position: center;
+	background-clip: content-box;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 8cm;
+	width: 16cm;
+	object-fit: cover;
+	filter: hue-rotate(240deg);
 }
 .background {
 	position: fixed;
@@ -32,7 +40,7 @@ body {
 	height: calc(100% + 12mm);
 	border-radius: 0 25cm 0 0;
 	background: #FFF;
-	box-shadow: 2mm -2mm 4mm #0001;
+	box-shadow: 2mm -2mm 4mm #0002;
 }
 
 /* Layout */
@@ -55,6 +63,7 @@ body {
 .section {
 	width: 100%;
 	padding: 2mm 0;
+	z-index: 1;
 }
 .section .name {
 	letter-spacing: .4mm;
@@ -126,7 +135,7 @@ body {
 	margin-right: 1mm;
 }
 .sidebar .section .item .desc {
-	opacity: .5;
+	opacity: .65;
 	font-size: 2.75mm;
 	font-weight: bold;
 }
@@ -147,7 +156,7 @@ body {
 .content {
 	z-index: 1;
 	padding: 4mm;
-	margin-right: 2mm;
+	margin: 1mm 1mm 0 1mm;
 }
 .content .full-name {
 	margin: 10mm 0 2mm;
@@ -178,9 +187,9 @@ body {
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
-	background: linear-gradient(-30deg, hsl(var(--color), 100%, 95%) 5%, hsl(var(--color), 100%, 99%));
-	border: 1mm solid hsl(var(--color), 100%, 95%);
-	color: hsl(var(--color), 100%, 15%);
+	background: linear-gradient(-30deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
+	border: 1mm solid hsl(var(--color), 100%, 96%);
+	color: hsl(var(--color), 100%, 11%);
 	padding: 3mm;
 	border-radius: 2mm;
 	z-index: 2;
@@ -245,7 +254,7 @@ body {
 	display: inline-block;
 	margin: 0 .25mm;
 	font-weight: bold;
-	color: #000B;
+	color: #000A;
 	border-radius: .5mm;
 }
 .skills .bubbles div:first-child {
@@ -268,8 +277,8 @@ body {
 	border-radius: 2mm;
 	padding: 2mm;
 	overflow: hidden;
-	border: 1mm solid hsl(var(--color), 100%, 95%);
-	background: linear-gradient(-90deg, hsl(var(--color), 100%, 95%), hsl(var(--color), 100%, 98%));
+	border: 1mm solid hsl(var(--color), 100%, 96%);
+	background: linear-gradient(-90deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
 }
 .competition > div:first-child {
 	border-top-left-radius: 8mm;
@@ -287,12 +296,13 @@ body {
 }
 .competition .title {
 	font-family: "Geo";
-	font-size: 4mm;
+	font-size: 4.25mm;
 	letter-spacing: .1mm;
 	font-weight: bold;
 }
 .competition .desc {
-	font-size: 2.5mm;
+	font-size: 2.75mm;
+	opacity: .85;
 }
 .competition .gold {
 	--color: 50;
@@ -325,11 +335,12 @@ body {
 	align-items: center;
 	font-size: 2.25mm;
 	font-weight: bold;
-	opacity: .333;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
 	max-width: 15cm;
+	z-index: 1;
+	opacity: .4;
 	transform: translate(-50%, -100%);
 }
 .policy i {
