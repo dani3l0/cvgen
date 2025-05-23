@@ -20,4 +20,6 @@ i {
   font-feature-settings: 'liga';
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  user-select: none !important;
+  -moz-user-select: none !important;
 }
