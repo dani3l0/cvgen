@@ -1,0 +1,70 @@
+/* Sidebar */
+.sidebar {
+	width: 100%;
+	height: 100%;
+	padding: 4mm;
+	max-width: 62mm;
+	z-index: 1;
+}
+
+/* Profile pic */
+.sidebar .profile-pic {
+	width: 100%;
+	text-align: center;
+}
+.sidebar .profile-pic i {
+	font-size: 40mm;
+	margin: 40px auto 20px;
+	padding: 4px;
+	border-radius: 1000px;
+	border: 1mm solid #BBB8;
+}
+
+/* Section overrides */
+.sidebar .section {
+	border: 1mm solid #FB0;
+	border-radius: 0 24mm 6mm 0;
+	border-left: none;
+	overflow: hidden;
+	margin: 3mm 0 3mm -4mm;
+	padding: 1mm 2mm 0 5mm;
+}
+.sidebar .section .item {
+	display: flex;
+	align-items: center;
+	margin: 3.5mm 0;
+}
+.sidebar .section .item > i {
+	border-radius: 10cm;
+	color: #633;
+	padding-right: 4mm;
+}
+.sidebar .section .item .value {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+}
+.sidebar .section .item .value > i {
+	font-size: 4mm;
+	margin-right: 1mm;
+}
+.sidebar .section .item .desc {
+	opacity: .65;
+	font-size: 2.75mm;
+	font-weight: bold;
+}
+
+/* Contact */
+.sidebar .contact .value {
+	font-family: "Lekton";
+	font-size: 3.5mm;
+}
+.sidebar .github img {
+	width: 7mm;
+	height: 6mm;
+	object-fit: fill;
+	border-radius: 1cm;
+	margin-right: 4mm;
+	margin-left: -.25mm;
+}

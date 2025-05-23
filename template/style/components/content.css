@@ -1,0 +1,184 @@
+/* Content */
+.content {
+	z-index: 1;
+	padding: 4mm;
+	margin: 1mm 1mm 0 1mm;
+}
+
+/* Full name + specialization */
+.content .full-name {
+	margin: 10mm 0 2mm;
+	line-height: 1.1;
+	font-size: 16mm;
+	font-family: "Jura";
+	font-weight: 600;
+}
+.content .full-name div::after {
+	content: "_";
+	opacity: .25;
+}
+.content .specialization-summary {
+	font-size: 4mm;
+	font-weight: bold;
+	font-family: "Lekton";
+	margin: 1mm 0 4mm;
+	opacity: .65;
+}
+
+/* Skills */
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 8mm;
+	overflow: hidden;
+	margin: 3mm 0 1mm;
+}
+.skills > div {
+	flex: 1;
+	--color: 23;
+	--margin: 1mm;
+	background: linear-gradient(-30deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
+	border: 1mm solid hsl(var(--color), 100%, 96%);
+	color: hsl(var(--color), 100%, 11%);
+	padding: 3mm;
+	border-radius: 2mm;
+	z-index: 2;
+	min-width: 40%;
+	overflow: hidden;
+}
+.skills .b1 {
+	border-top-left-radius: inherit;
+	margin-bottom: var(--margin);
+	margin-right: var(--margin);
+}
+.skills .b2 {
+	border-top-right-radius: inherit;
+	margin-bottom: var(--margin);
+}
+.skills .b3 {
+	border-bottom-left-radius: inherit;
+	margin-right: var(--margin);
+}
+.skills .b4 {
+	border-bottom-right-radius: inherit;
+}
+.skills .title {
+	display: flex;
+	font-weight: bold;
+	align-items: flex-end;
+	letter-spacing: .1mm;
+	position: relative;
+	font-size: 5.5mm;
+	margin: -1mm 0 -.75mm;
+	font-family: "Smooch Sans";
+}
+.skills .title i {
+	position: absolute;
+	margin-right: 2mm;
+	color: hsl(var(--color), 100%, 20%);
+	font-size: 24mm;
+	opacity: .2;
+	height: 8mm;
+	z-index: -1;
+	top: -7mm;
+	left: -7mm;
+}
+.skills .title div {
+	display: block;
+	margin: .25mm auto 1mm;
+	text-align: center;
+}
+.skills .text {
+	font-size: 2.75mm;
+}
+.skills .bubbles {
+	overflow: hidden;
+	margin: 2mm 0 .25mm;
+	border-radius: 8mm;
+	display: inline-flex;
+}
+.skills .bubbles div {
+	font-size: 2.25mm;
+	padding: 1mm 1.5mm;
+	background: hsl(var(--color), 100%, 80%);
+	display: inline-block;
+	margin: 0 .25mm;
+	font-weight: bold;
+	color: #000A;
+	border-radius: .5mm;
+}
+.skills .bubbles div:first-child {
+	margin-left: 0;
+}
+.skills .bubbles div:last-child {
+	margin-right: 0;
+}
+
+/* Achievements */
+.competition {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 4mm;
+}
+.competition > div {
+	display: flex;
+	align-self: flex-start;
+	margin: .5mm;
+	border-radius: 2mm;
+	padding: 2mm;
+	overflow: hidden;
+	border: 1mm solid hsl(var(--color), 100%, 96%);
+	background: linear-gradient(-90deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
+}
+.competition > div:first-child {
+	border-top-left-radius: 8mm;
+	border-top-right-radius: 8mm;
+}
+.competition > div:last-child {
+	border-bottom-left-radius: 8mm;
+	border-bottom-right-radius: 8mm;
+}
+.competition i {
+	font-size: 12mm;
+	position: relative;
+	margin-right: 2mm;
+	color: hsl(var(--color), 100%, 45%);
+}
+.competition .title {
+	font-family: "Geo";
+	font-size: 4.25mm;
+	letter-spacing: .1mm;
+	font-weight: bold;
+}
+.competition .desc {
+	font-size: 2.75mm;
+	opacity: .85;
+}
+.competition .gold {
+	--color: 50;
+}
+.competition .silver i {
+	opacity: .5;
+}
+.competition i::after {
+	position: absolute;
+	left: 50%;
+	top: 3.25mm;
+	transform: translateX(-50%);
+	font-family: monospace;
+	font-size: 3mm;
+	text-align: center;
+	font-weight: bold;
+}
+.competition .silver {
+	--color: 0;
+	filter: grayscale(1);
+}
+.competition .gold i::after {
+	content: "1";
+}
+.competition .silver i::after {
+	content: "2";
+}

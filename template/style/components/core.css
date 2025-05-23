@@ -1,0 +1,48 @@
+@import url(../fonts/fonts.css);
+@import url(../material-icons/material-icons.css);
+
+/* Common, 'low-level' global page styling */
+body, html {
+	background: #FFF;
+	color: #222;
+	margin: 0 auto;
+	padding: 0;
+	min-width: 210mm;
+	max-width: 210mm;
+	min-height: 297mm;
+	max-height: 297mm;
+	font-size: 3.25mm;
+	font-weight: 500;
+	font-family: "Manrope";
+}
+
+/* Fake dark mode */
+.dark {
+	filter: invert(1) !important;
+	backdrop-filter: invert(1) !important;
+}
+
+/* Page background */
+.background-image {
+	background: url(../../img/background.svg) repeat;
+	background-size: 100%;
+	background-position: center;
+	background-clip: content-box;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 8cm;
+	width: 16cm;
+	object-fit: cover;
+	filter: hue-rotate(240deg);
+}
+.background {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: calc(100% + 72mm);
+	height: calc(100% + 12mm);
+	border-radius: 0 25cm 0 0;
+	background: #FFF;
+	box-shadow: 2mm -2mm 4mm #0002;
+}

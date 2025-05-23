@@ -1,0 +1,43 @@
+/* Layout */
+.lr, .tb {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	flex-grow: 1;
+	flex: 1 1 0;
+	width: 100%;
+}
+.lr {
+	flex-direction: row;
+}
+.tb {
+	flex-direction: column;
+}
+
+/* Sections */
+.section {
+	width: 100%;
+	padding: 2mm 0;
+	z-index: 1;
+}
+.section .name {
+	letter-spacing: .4mm;
+	font-weight: bold;
+	margin: 2mm 0 1mm;
+	font-size: 5mm;
+	font-family: "Advent Pro";
+	position: relative;
+	display: inline-block;
+	z-index: 5;
+}
+.section .name::before {
+	content: " ";
+	position: absolute;
+	bottom: 0;
+	left: -1mm;
+	width: calc(100% + 2mm);
+	height: 50%;
+	z-index: -1;
+	background: #F99D;
+	border-radius: 3mm 1cm 3mm 1cm;
+}
