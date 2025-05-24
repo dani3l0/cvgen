@@ -6,7 +6,7 @@ var RENDER
 
 // HTTP request wrapper
 var reqId = 0
-function req(url, callback) {
+const req = (url, callback) => {
 	let req = reqId++
 	console.log(`Request #${req}: pending   [${url}]`)
 	let xhr = new XMLHttpRequest()
@@ -16,6 +16,18 @@ function req(url, callback) {
 		callback(this.responseText)
 	}
 	xhr.send()
+}
+
+// Text replacer; replaces fake variables with real text
+var fillContent = () => {
+	const d = document.querySelector("#ifr").contentDocument
+	for (let key in CONTENTS) {
+		let e = CONTENTS[key]
+		if (typeof(e) == "string") e = [e]
+		for (let i = 0; i < e.length; i++) {
+			d.body.innerHTML = d.body.innerHTML.replace(`%{${key}}`, e[i])
+		}
+	}
 }
 
 // Load config & contents
@@ -31,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					if (typeof(RENDER) == "function") {
 						console.log("Render engine loaded, rendering data...")
 						RENDER(document.querySelector("#ifr").contentDocument, CONTENTS)
+						fillContent()
 					} else {
 						console.log("Failed to load rendering engine")
 					}

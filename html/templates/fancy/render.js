@@ -13,9 +13,15 @@ RENDER = (doc, contents) => {
 	let contact_item = contact.querySelector(".item")
 	contact.querySelector(".name").innerText = v("contact_title")
 	for (let item of contact.querySelectorAll(".item")) contact.removeChild(item)
-	for (let _ of contents.contact_values) {
+	for (let _ of contents.contact_icons) {
 		let i = contact_item.cloneNode(true)
 		i.querySelector("i").innerText = v("contact_icons")
+		if (_ == "github") {
+			let gh = document.createElement("img")
+			gh.src = "img/github.svg"
+			i.classList.add("github")
+			i.querySelector("i").replaceWith(gh)
+		}
 		i.querySelector(".value").innerText = v("contact_values")
 		i.querySelector(".desc").innerText = v("contact_descs")
 		contact.appendChild(i)
@@ -30,7 +36,7 @@ RENDER = (doc, contents) => {
 	for (let _ of contents.education_values) {
 		let i = edu_item.cloneNode(true)
 		i.querySelector("i").innerText = v("education_icons")
-		i.querySelector(".value").innerText = v("education_values")
+		i.querySelector(".value div").innerText = v("education_values")
 		i.querySelector(".desc").innerText = v("education_descs")
 		edu.appendChild(i)
 	}
@@ -44,7 +50,7 @@ RENDER = (doc, contents) => {
 	for (let _ of contents.experience_values) {
 		let i = exp_item.cloneNode(true)
 		i.querySelector("i").innerText = v("experience_icons")
-		i.querySelector(".value").innerText = v("experience_values")
+		i.querySelector(".value div").innerText = v("experience_values")
 		i.querySelector(".desc").innerText = v("experience_descs")
 		exp.appendChild(i)
 	}
@@ -61,13 +67,15 @@ RENDER = (doc, contents) => {
 	let skill_item = box.querySelector(".item")
 	for (let item of box.querySelectorAll(".item")) box.removeChild(item)
 	let j = 0
+	let colors = [0, 127, 220, 32]
 	for (let _ of contents.skills_values) {
 		let i = skill_item.cloneNode(true)
 		i.className = ""
+		i.setAttribute("style", `--color: ${colors[j]}`)
 		i.classList.add("item", `b${++j}`)
-		i.querySelector("i").innerText = v("skill_icons")
-		i.querySelector(".title").innerText = v("skill_titles")
-		i.querySelector(".text").innerText = v("skill_descs")
+		i.querySelector("i").innerText = v("skills_icons")
+		i.querySelector(".title div").innerText = v("skills_values")
+		i.querySelector(".text").innerText = v("skills_descs")
 		let bubbles = i.querySelector(".bubbles")
 		for (let item of bubbles.querySelectorAll("div")) bubbles.removeChild(item)
 		for (let _ of contents[`skills_bubbles_${j}`]) {
@@ -75,6 +83,7 @@ RENDER = (doc, contents) => {
 			b.innerText = `%{skills_bubbles_${j}}`
 			i.querySelector(".bubbles").appendChild(b)
 		}
+		console.log(i)
 		box.appendChild(i)
 	}
 	doc.querySelector(".skillbox").innerHTML = box.innerHTML
@@ -90,8 +99,8 @@ RENDER = (doc, contents) => {
 		let i = achiev.cloneNode(true)
 		i.classList.remove("gold", "silver", "bronze")
 		i.classList.add(places[Math.min(place - 1, 3)])
-		i.querySelector(".title").innerText = v("achievements_title")
-		i.querySelector(".desc").innerText = v("achievements")
+		i.querySelector(".title").innerText = v("achievements_values")
+		i.querySelector(".desc").innerText = v("achievements_descs")
 		achievs.appendChild(i)
 	}
 	doc.querySelector(".competition").innerHTML = achievs.innerHTML

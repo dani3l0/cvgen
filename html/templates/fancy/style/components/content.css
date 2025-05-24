@@ -45,6 +45,7 @@
 	border-radius: 2mm;
 	z-index: 2;
 	min-width: 40%;
+	position: relative;
 	overflow: hidden;
 }
 .skillbox .b1 {
@@ -90,12 +91,15 @@
 }
 .skillbox .text {
 	font-size: 2.75mm;
+	margin-bottom: 6mm;
 }
 .skillbox .bubbles {
 	overflow: hidden;
 	margin: 2mm 0 .25mm;
 	border-radius: 8mm;
 	display: inline-flex;
+	position: absolute;
+	bottom: 2mm;
 }
 .skillbox .bubbles div {
 	font-size: 2.25mm;
@@ -149,9 +153,7 @@
 	color: hsl(var(--color), 100%, 45%);
 }
 .competition .title {
-	font-family: "Geo";
-	font-size: 4.25mm;
-	letter-spacing: .1mm;
+	font-size: 3.25mm;
 	font-weight: bold;
 }
 .competition .desc {

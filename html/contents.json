@@ -15,8 +15,8 @@
 
 	"experience_title": "Experience",
 	"experience_values": ["Kensar-soft Service Zoo", "Professional driver"],
-	"experiencec_descs": ["Managing old server based on RaspberryPi, vacuuming totally dusted computers, fixing printers and feeding lions", "Responsibility for connecting printers on unsupported systems with no hardware drivers available"],
-	"experiencec_icons": ["work", "search_hands_free"],
+	"experience_descs": ["Managing old server based on RaspberryPi, vacuuming totally dusted computers, fixing printers and feeding lions", "Responsibility for connecting printers on unsupported systems with no hardware drivers available"],
+	"experience_icons": ["work", "search_hands_free"],
 
 	"about_me_title": "About me",
 	"about_me_note": "To be honest, I don't know what to write here. I'm just looking for a damn job. I'm a knowledgy person with massive amount of information in my head, unlike 'educated' fresh bastards after royal universities. You can't even imagine how many computers and systems I've broken to gain knowledge I have. Idk, choose me or not, your fucking choice. kthxbye",
