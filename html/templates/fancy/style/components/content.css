@@ -3,6 +3,7 @@
 	z-index: 1;
 	padding: 4mm;
 	margin: 1mm 1mm 0 1mm;
+	max-width: calc(100% - 68mm);
 }
 
 /* Full name + specialization */
@@ -26,14 +27,14 @@
 }
 
 /* Skills */
-.skills {
+.skillbox {
 	display: flex;
 	flex-wrap: wrap;
 	border-radius: 8mm;
 	overflow: hidden;
 	margin: 3mm 0 1mm;
 }
-.skills > div {
+.skillbox > div {
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
@@ -46,23 +47,23 @@
 	min-width: 40%;
 	overflow: hidden;
 }
-.skills .b1 {
+.skillbox .b1 {
 	border-top-left-radius: inherit;
 	margin-bottom: var(--margin);
 	margin-right: var(--margin);
 }
-.skills .b2 {
+.skillbox .b2 {
 	border-top-right-radius: inherit;
 	margin-bottom: var(--margin);
 }
-.skills .b3 {
+.skillbox .b3 {
 	border-bottom-left-radius: inherit;
 	margin-right: var(--margin);
 }
-.skills .b4 {
+.skillbox .b4 {
 	border-bottom-right-radius: inherit;
 }
-.skills .title {
+.skillbox .title {
 	display: flex;
 	font-weight: bold;
 	align-items: flex-end;
@@ -72,32 +73,31 @@
 	margin: -1mm 0 -.75mm;
 	font-family: "Smooch Sans";
 }
-.skills .title i {
+.skillbox .title i {
 	position: absolute;
 	margin-right: 2mm;
 	color: hsl(var(--color), 100%, 20%);
 	font-size: 24mm;
 	opacity: .2;
-	height: 8mm;
 	z-index: -1;
 	top: -7mm;
 	left: -7mm;
 }
-.skills .title div {
+.skillbox .title div {
 	display: block;
 	margin: .25mm auto 1mm;
 	text-align: center;
 }
-.skills .text {
+.skillbox .text {
 	font-size: 2.75mm;
 }
-.skills .bubbles {
+.skillbox .bubbles {
 	overflow: hidden;
 	margin: 2mm 0 .25mm;
 	border-radius: 8mm;
 	display: inline-flex;
 }
-.skills .bubbles div {
+.skillbox .bubbles div {
 	font-size: 2.25mm;
 	padding: 1mm 1.5mm;
 	background: hsl(var(--color), 100%, 80%);
@@ -107,10 +107,10 @@
 	color: #000B;
 	border-radius: .5mm;
 }
-.skills .bubbles div:first-child {
+.skillbox .bubbles div:first-child {
 	margin-left: 0;
 }
-.skills .bubbles div:last-child {
+.skillbox .bubbles div:last-child {
 	margin-right: 0;
 }
 
@@ -124,7 +124,9 @@
 }
 .competition > div {
 	display: flex;
-	align-self: flex-start;
+	flex-grow: 1;
+	align-items: center;
+	min-width: 60%;
 	margin: .5mm;
 	border-radius: 2mm;
 	padding: 2mm;
@@ -143,7 +145,7 @@
 .competition i {
 	font-size: 12mm;
 	position: relative;
-	margin-right: 2mm;
+	min-width: 14mm;
 	color: hsl(var(--color), 100%, 45%);
 }
 .competition .title {
@@ -164,8 +166,8 @@
 }
 .competition i::after {
 	position: absolute;
-	left: 50%;
-	top: 3.25mm;
+	left: calc(50% - 1mm);
+	top: 3mm;
 	transform: translateX(-50%);
 	font-family: monospace;
 	font-size: 3mm;

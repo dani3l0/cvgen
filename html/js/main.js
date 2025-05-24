@@ -25,14 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.querySelector("#ifr").src = `templates/${CONFIG.template_name}/index.html`
 		req(CONFIG.contents_json, contents => {
 			CONTENTS = JSON.parse(contents)
-			req(`templates/${CONFIG.template_name}/contents.js`, engine => {
+			req(`templates/${CONFIG.template_name}/render.js`, engine => {
 				eval(engine)
-				if (typeof(RENDER) == "function") {
-					console.log("Render engine loaded, rendering data...")
-					RENDER(document.querySelector("#ifr").contentDocument, CONTENTS)
-				} else {
-					console.log("Failed to load rendering engine")
-				}
+				document.querySelector("#ifr").addEventListener("load", () => {
+					if (typeof(RENDER) == "function") {
+						console.log("Render engine loaded, rendering data...")
+						RENDER(document.querySelector("#ifr").contentDocument, CONTENTS)
+					} else {
+						console.log("Failed to load rendering engine")
+					}
+				})
 			})
 		})
 	})

@@ -11,6 +11,7 @@
 .sidebar .profile-pic {
 	width: 100%;
 	text-align: center;
+	overflow: hidden;
 }
 .sidebar .profile-pic i {
 	font-size: 40mm;
@@ -38,6 +39,7 @@
 	border-radius: 10cm;
 	color: #633;
 	padding-right: 4mm;
+	max-width: 16mm;
 }
 .sidebar .section .item .value {
 	font-weight: bold;
