@@ -13,5 +13,6 @@
 }
 .policy i {
 	font-size: 5mm;
+	min-width: 6mm;
 	margin-right: 1mm;
 }

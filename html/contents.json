@@ -26,6 +26,7 @@
 	"skills_values": ["Networking", "Cybersecurity", "Foreign languages", "Electricity"],
 	"skills_descs": ["Building complex network based on modern, error-prone WTFIT achitecture utilizing latest high-quality hardware. Transfer reliability and speed are my main concerns.", "I can hack your Facebook account. No, seriously. So, if you won't read my resume  carefully, I will hack your Facebook account. And I am totally serious.", "Hello. Danke. Bonjour. Szczęść Boże. And I know more. However, I'd like to stick to just one of them. CHWAŁA WIELKIEJ POLSCE!", "Connecting, configuring and utilizing low-power devices on demand. Choosing high-power devices, for both computing power and house-warming capabilities. We all have done a short-circuit at least once in our careers..."],
 	"skills_icons": ["wifi", "key", "language", "flash_on"],
+	"skills_colors": [10, 127, 220, 250],
 	"skills_bubbles_1": ["WiFi", "LAN", "RJ-45", "NAT", "VPN", "loopback"],
 	"skills_bubbles_2": ["Wireshrek", "haircrack", "John The Wicker"],
 	"skills_bubbles_3": ["English", "Polish", "French", "Czech", "Russian"],

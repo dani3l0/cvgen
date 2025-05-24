@@ -67,7 +67,7 @@ RENDER = (doc, contents) => {
 	let skill_item = box.querySelector(".item")
 	for (let item of box.querySelectorAll(".item")) box.removeChild(item)
 	let j = 0
-	let colors = [0, 127, 220, 32]
+	let colors = contents.skills_colors
 	for (let _ of contents.skills_values) {
 		let i = skill_item.cloneNode(true)
 		i.className = ""

@@ -38,8 +38,8 @@
 	flex: 1;
 	--color: 23;
 	--margin: 1mm;
-	background: linear-gradient(-30deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
-	border: 1mm solid hsl(var(--color), 100%, 96%);
+	background: linear-gradient(-30deg, hsl(var(--color), 100%, 94%), hsl(var(--color), 100%, 98%) 67%);
+	border: 1mm solid hsl(var(--color), 100%, 94%);
 	color: hsl(var(--color), 100%, 11%);
 	padding: 3mm;
 	border-radius: 2mm;
@@ -135,8 +135,8 @@
 	border-radius: 2mm;
 	padding: 2mm;
 	overflow: hidden;
-	border: 1mm solid hsl(var(--color), 100%, 96%);
-	background: linear-gradient(-90deg, hsl(var(--color), 100%, 96%), hsl(var(--color), 100%, 99%) 67%);
+	border: 1mm solid hsl(var(--color), 100%, 95%);
+	background: linear-gradient(-90deg, hsl(var(--color), 100%, 95%), hsl(var(--color), 100%, 99%));
 }
 .competition > div:first-child {
 	border-top-left-radius: 8mm;
@@ -162,6 +162,8 @@
 }
 .competition .gold {
 	--color: 50;
+	border-color: hsl(var(--color), 100%, 86%);
+	background: linear-gradient(-90deg, hsl(var(--color), 100%, 86%), hsl(var(--color), 100%, 97%) 67%);
 }
 .competition .silver i {
 	opacity: .5;
