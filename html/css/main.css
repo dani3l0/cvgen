@@ -1,0 +1,19 @@
+body {
+	background: #222;
+	color: #0FB;
+	font-family: monospace;
+	filter: invert(1);
+	margin: 0;
+	padding: 0;
+}
+
+#ifr {
+	width: 210mm;
+	height: 297mm;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	border: none;
+	outline: none;
+}

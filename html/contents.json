@@ -1,0 +1,37 @@
+{
+	"first_name": "Bogdan",
+	"last_name": "Cwelarczyk",
+	"summary": "Professional driver, reliable supplier, awesome electrician",
+	"contact_title": "Contact",
+	"contact": [
+		["phone", "+48492535443", "Phone number"],
+		["phone", "noreply@ohv.lol", "E-mail address"],
+		["phone", "Białystok, podlaskie", "Living place"],
+		["phone", "19 kwietnia 1999", "Date of birth"]
+	],
+	"education_title": "Education",
+	"education": [
+		["id_card", "Bachelor's degree", "Twoja Stara's University in Lublin"],
+		["school", "High School", "St. Twoja Stara's 22nd High School in Cracov"]
+	],
+	"experience_title": "Experience",
+	"experience": [
+		["work", "Kensar-soft Service Zoo", "Managing old server based on RaspberryPi, vacuuming totally dusted computers, fixing printers and feeding lions"],
+		["search_hands_free", "Professional driver", "Responsibility for connecting printers on unsupported systems with no hardware drivers available"]
+	],
+	"about_me_title": "About me",
+	"about_me": "To be honest, I don't know what to write here. I'm just looking for a damn job. I'm a knowledgy person with massive amount of information in my head, unlike 'educated' fresh bastards after royal universities. You can't even imagine how many computers and systems I've broken to gain knowledge I have. Idk, choose me or not, your fucking choice. kthxbye",
+	"skills_title": "Skills",
+	"skills": [
+		["wifi", "Networking", "Building complex network based on modern, error-prone WTFIT achitecture utilizing latest high-quality hardware. Transfer reliability and speed are my main concerns.", ["WiFi", "LAN", "RJ-45", "NAT", "VPN"]],
+		["key", "Cybersecurity", "I can hack your Facebook account. No, seriously. So, if you won't read my resume  carefully, I will hack your Facebook account. And I am totally serious.", ["Wireshark", "RSA", "metasploit"]],
+		["language", "Foreign languages", "Hello. Danke. Bonjour. Szczęść Boże. And I know more. However, I'd like to stick to just one of them. CHWAŁA WIELKIEJ POLSCE!", ["English", "Polish", "Czech", "Russian", "Italian"]],
+		["flash_on", "Electricity", "Connecting, configuring and utilizing low-power devices on demand. Choosing high-power devices, for both computing power and house-warming capabilities. We all have done a short-circuit at least once in our careers...", ["DC", "AC", "Fire extinguisher", "RTX", "Intel", "ASUS"]]
+	],
+	"achievements_title": "Achievements",
+	"achievements": [
+		[1, "2136+1 CTF", "First place in Louisiana state at two-week cybersecurity 'Capture The Flag' event organized by Apple Inc."],
+		[2, "amgiF Emblem", "Second best UI design project chosen by CEO of Zorro Design Agency at local digital art competition in Tarnów, Poland"]
+	],
+	"policy_note": "I grant permission to the resume viewer to process my personal data in need of recrutation process and contacting me later via provided communication mediums."
+}
