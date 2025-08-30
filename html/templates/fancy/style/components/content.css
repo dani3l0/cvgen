@@ -91,25 +91,24 @@
 }
 .skillbox .text {
 	font-size: 2.75mm;
-	margin-bottom: 6mm;
+	margin-bottom: 2mm;
 }
 .skillbox .bubbles {
 	overflow: hidden;
-	margin: 2mm 0 .25mm;
-	border-radius: 8mm;
+	margin: -1mm;
 	display: inline-flex;
-	position: absolute;
-	bottom: 2mm;
+	align-items: flex-end;
+	flex-wrap: wrap;
 }
 .skillbox .bubbles div {
 	font-size: 2.25mm;
 	padding: 1mm 1.5mm;
 	background: hsl(var(--color), 100%, 80%);
 	display: inline-block;
-	margin: 0 .25mm;
+	margin: .15mm .3mm;
 	font-weight: bold;
 	color: #000B;
-	border-radius: .5mm;
+	border-radius: 1mm;
 }
 .skillbox .bubbles div:first-child {
 	margin-left: 0;
