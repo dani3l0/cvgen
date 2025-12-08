@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="common.css">
+	<script src="common.js"></script>
+</head>
+<body>
+	<div class="choices">
+		<div>
+			<div class="overlay">
+				<button>Select</button>
+			</div>
+			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+		<div>
+			<div class="overlay">
+				<button>Select</button>
+			</div>
+			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+		<div>
+			<div class="overlay">
+				<button>Select</button>
+			</div>
+			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+		<div>
+			<div class="overlay">
+				<button>Select</button>
+			</div>
+			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+		<div>
+			<div class="overlay">
+				<button>Select</button>
+			</div>
+			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+	</div>
+</body>
+
+<style>
+	.choices {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.choices > div {
+		margin: 8px;
+		position: relative;
+	}
+	.choices .overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		background: #222D;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all .3s;
+	}
+	.choices > div:hover .overlay {
+		opacity: 1;
+	}
+	.choices .overlay button {
+		background: #66B;
+		color: #FFF;
+		box-shadow: 0 0 48px #222;
+	}
+	.choices > div .overlay button:hover {
+		background: #99F;
+		color: #000;
+	}
+	iframe {
+		pointer-events: none;
+	}
+</style>
+</html>

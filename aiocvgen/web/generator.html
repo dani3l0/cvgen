@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="common.css">
+	<script src="common.js"></script>
+</head>
+<body>
+
+	<div>
+		<div class="input">
+			<div>Ollama URL</div>
+			<input id="config-ollama-url">
+		</div>
+		<div class="input">
+			<div>Model</div>
+			<input id="config-model">
+		</div>
+		<div class="input">
+			<div>Temperature</div>
+			<input id="config-temperature" type="number" min="0.05" max="2.0" step="0.01">
+		</div><br>
+		<button>Save</button>
+		<button onclick="window.reload()">Reset</button>
+		<hr>
+	</div>
+
+	<div>
+		<div class="input">
+			<div>About Me</div>
+			<textarea cols="48" rows="8"></textarea>
+		</div>
+		<div class="input">
+			<div>HTML template format/look options</div>
+			<textarea cols="48" rows="8"></textarea>
+		</div>
+		<div class="input">
+			<div>Job offer text content</div>
+			<textarea cols="64" rows="16"></textarea>
+		</div>
+		<div class="input">
+			<div>Other notes</div>
+			<textarea cols="32" rows="16"></textarea>
+		</div>
+	</div>
+
+	<br>
+	<div class="actions">
+		<button onclick="window.reload()">Reset</button>
+		<button>Save</button>
+		<button>Run</button>
+	</div>
+
+</body>
+</html>

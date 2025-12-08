@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="common.css">
+	<script src="common.js"></script>
+</head>
+
+<body>
+	<div class="editor">
+		<div class="left">
+			<div>
+				<div class="h1">Information</div>
+				<div class="entry"><i>Is editable</i><b id="contenteditableInfo"></b></div>
+				<div class="entry"><i>Zoom level</i><b id="zoomLevelInfo"></b></div>
+				<div class="entry"><i>Generated</i><b>true</b></div>
+				<div class="entry"><i>Modified</i><b>true</b></div>
+				<br><br>
+			</div>
+			<div>
+				<div class="h1">Actions</div>
+				<div>
+					<button onclick="makeEditable()" id="contenteditablebtn"></button>
+					<button>Save</button>
+				</div>
+				<div class="entry">
+					<input type="checkbox" oninput="document.querySelector('.left').classList.toggle('wide')" /><p>Show control panel on top</p>
+				</div>
+				<div class="entry">
+					<input type="range" min="0.25" max="2.5" step="0.05" value="1" oninput="zoomLevel(this.value)" /><p>Zoom</p><p id="zoomLevel"></p>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<iframe class="cv" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+		</div>
+	</div>
+</body>
+
+<script>
+	function zoomLevel(level) {
+		let text = `x${parseFloat(level).toFixed(2)}`
+		document.querySelector('#zoomLevel').innerText = text
+		document.querySelector('#zoomLevelInfo').innerText = text
+		let iframe = document.querySelector("iframe")
+		iframe.setAttribute("style", `--zoom: ${1/level}`)
+	}
+	zoomLevel(1)
+
+	function makeEditable() {
+		let editable = !document.querySelector("#contenteditableInfo").innerText.includes("true")
+		let iframe = document.querySelector("iframe")
+		const tags = ["div", "span", "p", "b", "i", "h1", "h2", "h3", "li"]
+		for (let tag of tags) {
+			let elems = iframe.contentDocument.querySelectorAll(tag)
+			for (let elem of elems) {
+				elem.setAttribute("contenteditable", editable)
+			}
+		}
+		checkEditable()
+	}
+	function checkEditable() {
+		let iframe = document.querySelector("iframe")
+		let yes = iframe.contentDocument.body.innerHTML.includes(' contenteditable="true"')
+		let ceb = document.querySelector("#contenteditablebtn")
+		let cei = document.querySelector("#contenteditableInfo")
+		cei.innerText = yes
+		ceb.innerText = yes ? "Stop editing" : "Make editable"
+		return yes
+	}
+	checkEditable()
+</script>
+
+<style>
+	.editor {
+		display: flex;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.left.wide {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-around;
+		width: 100%;
+	}
+	.right {
+		display: flex;
+		width: fit-content;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	p {
+		margin: 0;
+		padding: 0;
+		line-height: 1;
+		display: inline;
+	}
+	.entry {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.h1 {
+		color: #888;
+		font-size: 32px;
+		margin-bottom: 4px;
+	}
+	.entry > b {
+		margin-left: auto;
+	}
+</style>
+</html>

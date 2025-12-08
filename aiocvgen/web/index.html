@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>aiocvgen</title>
+	<link rel="stylesheet" href="common.css">
+</head>
+
+<body style="padding: 0; margin: 0;">
+	<div class="selector">
+		<div id="selector">
+			<div>Generator</div>
+			<div>Chooser</div>
+			<div>Editor</div>
+			<div>Preview</div>
+		</div>
+	</div>
+	<iframe></iframe>
+</body>
+
+<script>
+	let iframe = document.querySelector("iframe")
+
+	document.addEventListener("DOMContentLoaded", () => {
+		let selectors = document.querySelector("#selector").children
+		let toclick = selectors[0]
+		for (let x of selectors) {
+			let hash = x.innerText.toLowerCase()
+			x.addEventListener("click", () => {
+				if (x.classList.contains("current")) return
+				iframe.src = `${hash}.html`
+				for (let y of selectors) y.classList.remove("current")
+				x.classList.add("current")
+				document.title = x.innerText + " - CV Generateur"
+				window.location.hash = hash
+			})
+			if (hash == window.location.hash.replace("#", "")) toclick = x
+		}
+		toclick.click()
+	})
+</script>
+
+<style>
+	#selector {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2px;
+		border: 2px solid #333;
+		display: flex;
+		text-align: center;
+		margin: 16px auto;
+		flex: 1;
+		max-width: 640px;
+		min-width: 192px;
+		border-radius: 100px;
+	}
+	#selector > div {
+		flex: 1;
+		color: #BBB;
+		font-weight: bold;
+		padding: 10px 14px;
+		border-radius: 100px;
+		text-align: center;
+		cursor: pointer;
+		transition: all .2s;
+	}
+	#selector > .current {
+		color: #0F8;
+		background: #0F83;
+	}
+	.selector {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+
+</html>
