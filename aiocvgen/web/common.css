@@ -50,7 +50,7 @@ iframe.cv.small {
 
 .input div {
 	font-size: 12px;
-	margin: 4px 12px -4px;
+	margin: 4px 12px 0;
 }
 
 input, textarea {
@@ -69,6 +69,11 @@ input, textarea {
 
 input:focus, textarea:focus {
 	background: #333;
+}
+
+textarea {
+	color: #BBB;
+	font-size: 12px;
 }
 
 button {
@@ -105,4 +110,11 @@ hr {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+}
+
+#status {
+	display: block;
+	text-align: center;
+	color: #0F8;
+	margin: 4px auto;
 }

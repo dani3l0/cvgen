@@ -13,7 +13,7 @@ import (
 func generate(systemPrompt string, prompt string, think bool) string {
 	// Client setup
 	var resp = ""
-	Stage = Stages.Loading
+	Stage = StageLoading
 
 	// Generation!
 	client.Generate(context.Background(), &api.GenerateRequest{
@@ -21,31 +21,36 @@ func generate(systemPrompt string, prompt string, think bool) string {
 		Prompt: prompt,
 		System: systemPrompt,
 		Stream: utils.Bool(config.Get().OllamaStream),
-		Think:  &api.ThinkValue{Value: !think},
+		Think:  &api.ThinkValue{Value: think},
 		Options: map[string]any{
 			"temperature": config.Get().OllamaTemperature,
 		},
 	}, func(gr api.GenerateResponse) error {
+		if Stage == StageIdle {
+			return nil
+		}
 		lthk := len(gr.Thinking)
 		lrsp := len(gr.Response)
 		if lthk > 0 {
-			Stage = Stages.Thinking
+			Stage = StageThinking
 		} else if lrsp > 0 {
-			Stage = Stages.Writing
+			Stage = StageWriting
 			resp += gr.Response
 		}
 		return nil
 	})
 
+	if Stage == StageIdle {
+		return ""
+	}
 	resp = strings.TrimSpace(resp)
-	Stage = Stages.Done
+	Stage = StageIdle
 	return resp
 }
 
 // Uses default (empty) system prompt for general use
 func Generate(prompt string) string {
 	x := generate("", prompt, false)
-	Stage = Stages.Idle
 	return x
 }
 

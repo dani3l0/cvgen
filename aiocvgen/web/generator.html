@@ -15,42 +15,190 @@
 		</div>
 		<div class="input">
 			<div>Model</div>
-			<input id="config-model">
+			<input id="config-ollama-model">
 		</div>
 		<div class="input">
 			<div>Temperature</div>
-			<input id="config-temperature" type="number" min="0.05" max="2.0" step="0.01">
+			<input id="config-ollama-temperature" type="number" min="0.05" max="2.0" step="0.01">
+		</div>
+		<div class="input">
+			<div>Batch</div>
+			<input id="config-ollama-batch" type="number" min="1" max="10" step="1">
+		</div>
+		<div class="input">
+			<div>Think</div>
+			<input id="config-ollama-think" type="checkbox">
 		</div><br>
-		<button>Save</button>
-		<button onclick="window.reload()">Reset</button>
 		<hr>
 	</div>
 
-	<div>
+	<div class="inputs">
 		<div class="input">
 			<div>About Me</div>
-			<textarea cols="48" rows="8"></textarea>
+			<textarea id="about-me"></textarea>
 		</div>
 		<div class="input">
 			<div>HTML template format/look options</div>
-			<textarea cols="48" rows="8"></textarea>
-		</div>
-		<div class="input">
-			<div>Job offer text content</div>
-			<textarea cols="64" rows="16"></textarea>
+			<textarea id="template-options"></textarea>
 		</div>
 		<div class="input">
 			<div>Other notes</div>
-			<textarea cols="32" rows="16"></textarea>
+			<textarea id="other-notes"></textarea>
+		</div>
+		<div class="input" style="min-width: 480px;">
+			<div>Job offer text content</div>
+			<textarea id="job-offer"></textarea>
 		</div>
 	</div>
 
 	<br>
+	<div>
+		<b id="status"></b>
+		<div id="progress" style="--progress: 0"></div>
+	</div>
 	<div class="actions">
-		<button onclick="window.reload()">Reset</button>
-		<button>Save</button>
-		<button>Run</button>
+		<button onclick="window.location.reload()">Reset</button>
+		<button onclick="syncConf(true)">Save</button>
+		<button onclick="generationStatus(true)">Status</button>
+		<button onclick="runGeneration()">Run</button>
+		<button onclick="stopGeneration()">Stop</button>
 	</div>
 
 </body>
+
+<script>
+	let config = {}
+
+	const getConf = (id) => {
+		return document.querySelector("#"+id).value
+	}
+	const setConf = (id, value) => {
+		document.querySelector("#"+id).value = value
+	}
+	const fetchConf = async () => {
+		let status = document.querySelector("#status")
+		notif("Downloading config")
+		let raw = await fetch2("getConfig")
+		config = raw.json
+		setConf("config-ollama-url", config["ollama_url"])
+		setConf("config-ollama-model", config["ollama_model"])
+		setConf("config-ollama-temperature", config["ollama_temperature"])
+		setConf("config-ollama-batch", config["batch"])
+		setConf("about-me", config["llm_about_me"])
+		setConf("template-options", config["llm_template_options"])
+		setConf("job-offer", config["llm_job_offer"])
+		setConf("other-notes", config["llm_other_notes"])
+		document.querySelector("#config-ollama-think").setAttribute("checked", config["ollama_think"])
+		notif("Config initialized")
+	}
+	const syncConf = async (server) => {
+		config.ollama_url = getConf("config-ollama-url")
+		config.ollama_model = getConf("config-ollama-model")
+		config.ollama_temperature = parseFloat(getConf("config-ollama-temperature"))
+		config.batch = parseFloat(getConf("config-ollama-batch"))
+		config.ollama_think = document.querySelector("#config-ollama-think").getAttribute("checked").includes("true")
+		config.llm_about_me = getConf("about-me")
+		config.llm_template_options = getConf("template-options")
+		config.llm_job_offer = getConf("job-offer")
+		config.llm_other_notes = getConf("other-notes")
+		if (server) {
+			notif("Uploading config")
+			let raw = await fetch2("sendConfig", config)
+			if (!raw.ok) notif("Error: "+JSON.stringify(raw))
+			else notif("Config saved")
+		}
+	}
+	document.addEventListener("DOMContentLoaded", fetchConf)
+
+
+	let refInterval
+	let wasEverRunning = false
+
+	const generationStatus = async (manual) => {
+		let resp = await fetch2("generationStatus")
+		if (!resp.ok) {
+			clearInterval(refInterval)
+			notif("Failed fetching generation status: ", resp.json)
+		}
+		else {
+			let data = resp.json
+			if (manual) return notif("Worker status: "+data.stage)
+			let progress = document.querySelector("#progress")
+			if (!data.running) {
+				clearInterval(refInterval)
+				if (wasEverRunning) {
+					if (data.batch_done == data.batch_size) notif("Generation complete")
+					else notif("Generation stopped")
+				}
+				return
+			} else wasEverRunning = true
+			
+			let pp = Math.round(100*data.stages_done/data.stages_total)
+			let text = `Generating CV #${Math.min(data.batch_done+1, data.batch_size)} | Stage: ${data.stage} | Job: ${Math.min(data.stages_done+1, data.stages_total)} of ${data.stages_total} [ ${pp}% ]`
+			notif(text)
+			progress.setAttribute("style", `--progress: ${pp}`)
+		}
+	}
+	refInterval = setInterval(generationStatus, 2000)
+
+	const runGeneration = async () => {
+		syncConf(false)
+		let resp = await fetch2("runGeneration", config)
+		if (resp.ok) {
+			notif("Starting generation")
+			clearInterval(generationStatus)
+			refInterval = setInterval(generationStatus, 2000)
+		}
+		else notif("Starting generation error: "+resp.json)
+	}
+
+	const stopGeneration = async () => {
+		let resp = await fetch2("cancelGeneration")
+		if (resp.ok) notif("Cancelling generation")
+		else notif("Cancelling generation error: "+resp.json)
+	}
+</script>
+
+<style>
+	.inputs {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+	.inputs > div {
+		flex: 1;
+		position: relative;
+		min-width: 360px;
+		min-height: 320px;
+	}
+	textarea {
+		position: absolute;
+		top: 16px;
+		width: calc(100% - 32px);
+		height: calc(100% - 32px);
+	}
+	#progress {
+		height: 32px;
+		width: calc(100% - 64px);
+		border-radius: 8px;
+		background: #333;
+		margin: 0 auto;
+		overflow: hidden;
+		position: relative;
+	}
+	#progress::after {
+		content: " ";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		background: linear-gradient(90deg, #86F, #4BF);
+		background-repeat: repeat-x;
+		background-size: calc(100% * 100 / var(--progress));
+		width: calc(1% * var(--progress));
+		transition: all 1s;
+	}
+</style>
 </html>

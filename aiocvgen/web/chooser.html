@@ -7,39 +7,56 @@
 	<script src="common.js"></script>
 </head>
 <body>
+	<div id="status"></div>
 	<div class="choices">
-		<div>
-			<div class="overlay">
-				<button>Select</button>
-			</div>
-			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
-		</div>
-		<div>
-			<div class="overlay">
-				<button>Select</button>
-			</div>
-			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
-		</div>
-		<div>
-			<div class="overlay">
-				<button>Select</button>
-			</div>
-			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
-		</div>
-		<div>
-			<div class="overlay">
-				<button>Select</button>
-			</div>
-			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
-		</div>
-		<div>
-			<div class="overlay">
-				<button>Select</button>
-			</div>
-			<iframe class="cv small" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
-		</div>
+		<div style="color: #888;">No CVs were generated yet, go to 'Generator' tab and generate some</div>
 	</div>
 </body>
+
+<script>
+	document.addEventListener("DOMContentLoaded", async () => {
+		let resp = await fetch2("getGeneratedCVs")
+		let cvs = resp.json
+		console.log(cvs)
+		if (cvs.length > 0) {
+			document.querySelector(".choices").innerHTML = ""
+			for (let cv of cvs) {
+				createElement(cv.id, cv.name, cv.selected, cv.generated, cv.html)
+			}
+		}
+	})
+
+	const createElement = (id, name, selected, generated, rawHtml) => {
+		let d = document.createElement("div")
+		let overlay = document.createElement("div")
+		let button = document.createElement("button")
+		let iframe = document.createElement("iframe")
+
+		if (selected) d.classList.add("selected")
+		overlay.classList.add("overlay")
+		button.innerText = "Select"
+		button.addEventListener("click", async () => {
+			let resp = await fetch2("setCurrentCV", {id})
+			if (resp.ok) notif("Selected CV #"+id)
+			else notif("Failed to set current CV: "+resp.json)
+			let x = document.querySelector(".choices").children
+			for (let y of x) {
+				console.log(y)
+				y.classList.remove("selected")
+			}
+			d.classList.add("selected")
+		})
+		iframe.classList.add("cv", "small")
+		iframe.scrolling = "no"
+		iframe.srcdoc = rawHtml
+
+		overlay.appendChild(button)
+		d.appendChild(overlay)
+		d.appendChild(iframe)
+		document.querySelector(".choices").appendChild(d)
+	}
+
+</script>
 
 <style>
 	.choices {
@@ -51,6 +68,19 @@
 	.choices > div {
 		margin: 8px;
 		position: relative;
+	}
+	.choices > div.selected::after {
+		content: "Selected";
+		position: absolute;
+		bottom: 4px;
+		left: 0;
+		border-radius: 0 0 12px 12px;
+		width: calc(100% - 8px);
+		background: #222D;
+		z-index: 1;
+		padding: 16px 0;
+		margin: 4px;
+		text-align: center;
 	}
 	.choices .overlay {
 		position: absolute;

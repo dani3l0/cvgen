@@ -16,9 +16,14 @@ func Run(staticFiles http.FileSystem) error {
 	mux = http.NewServeMux()
 
 	mux.HandleFunc("/api/getConfig", apiGetConfig)
-	mux.HandleFunc("/api/postConfig", apiSendConfig)
+	mux.HandleFunc("/api/sendConfig", apiSendConfig)
 	mux.HandleFunc("/api/getCurrentCV", apiGetCurrentCV)
+	mux.HandleFunc("/api/setCurrentCV", apiSetCurrentCV)
+	mux.HandleFunc("/api/saveCurrentCV", apiSaveCurrentCV)
 	mux.HandleFunc("/api/getGeneratedCVs", apiGetGeneratedCVs)
+	mux.HandleFunc("/api/runGeneration", apiRunGeneration)
+	mux.HandleFunc("/api/cancelGeneration", apiCancelGeneration)
+	mux.HandleFunc("/api/generationStatus", apiGenerationStatus)
 	mux.Handle("/", http.FileServer(staticFiles))
 
 	srv := &http.Server{

@@ -11,13 +11,15 @@ var fetch2 = async (apipath, postdata) => {
 	if (postdata) headers.append("Content-Type", "application/json")
 	let status = 0
 	let json = {}
+	let text = ""
 
 	try {
 		let req = await fetch(`/api/${apipath}`, { headers, method, body })
 		status = req.status
-		json = await req.json()
+		text = await req.text()
+		json = JSON.parse(text)
 	} catch (e) {
-		console.error("Failed parsing request json: ", e)
+		json = text
 	}
 
 	let end = new Date().getTime()
@@ -27,4 +29,12 @@ var fetch2 = async (apipath, postdata) => {
 		json: json,
 		respTimeMs: Math.ceil(end - start)
 	}
+}
+
+let notifTimeout
+var notif = (text) => {
+	let div = document.querySelector("#status")
+	div.innerHTML = text
+	clearTimeout(notifTimeout)
+	notifTimeout = setTimeout(() => div.innerHTML = "", 4000)
 }
