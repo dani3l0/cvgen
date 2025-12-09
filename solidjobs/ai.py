@@ -11,7 +11,7 @@ ai = ollama.Client(host="127.0.0.1")
 def loadDescs():
 	print("\nLoading candidate description file")
 	global AboutMe
-	AboutMe = open(path.join("../data/AboutMe.txt"), "r").read().strip()
+	AboutMe = open(path.join("./data/AboutMe.txt"), "r").read().strip()
 
 
 # Generic chat function

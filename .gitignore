@@ -1,4 +1,10 @@
+# AIO CV Gen stuff
+/aiocvgen/aiocvgen
+config.json
+
+# TrashyLobs
 data
 contents.json
 __pycache__
 venv
+!/solidjobs/html/config.json

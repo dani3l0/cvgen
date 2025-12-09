@@ -55,7 +55,7 @@ def sendMessage(job : dict):
 	msg["To"] = to_addr
 
 	# Insert image
-	image = MIMEImage(open("../data/screenshot.png", "rb").read())
+	image = MIMEImage(open("./data/screenshot.png", "rb").read())
 	image.add_header("Content-ID", f"<{job["id"]}>")
 	msg.attach(image)
 	message += f"""<br><img src="cid:{job["id"]}">"""

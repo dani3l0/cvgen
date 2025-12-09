@@ -27,7 +27,7 @@ async def main():
 	print("\nReading already parsed jobs")
 	lastjob = None
 	try:
-		checked = json.loads(open("../data/checkedJobs.json", "r").read())
+		checked = json.loads(open("./data/checkedJobs.json", "r").read())
 		print(f"Found {len(checked)} checked jobs, those will be skipped")
 	except FileNotFoundError:
 		checked = []
@@ -40,7 +40,7 @@ async def main():
 			# Check if already parsed
 			if lastjob and lastjob["id"] not in checked:
 				checked.append(lastjob["id"])
-				w = open("../data/checkedJobs.json", "w+")
+				w = open("./data/checkedJobs.json", "w+")
 				w.write(json.dumps(checked))
 				w.close()
 			elif job["id"] in checked:
@@ -108,8 +108,8 @@ async def main():
 				except:
 					print(jsoned)
 					continue
-			pth = f"../data/CVs/{job["id"]}"
-			os.system(f"cp -r '../html' {pth}") # veeery unsafe :P
+			pth = f"./data/CVs/{job["id"]}"
+			os.system(f"cp -r './html' {pth}") # veeery unsafe :P
 
 			# Modify json contents file for customized CV
 			orig = json.loads(open(pth+"/contents.json", "r").read())
@@ -132,14 +132,14 @@ async def main():
 				let node = document.querySelector(target);
 				node.style.display = "none";
 			}""")
-			await page.screenshot({"path": "../data/screenshot.png"})
+			await page.screenshot({"path": "./data/screenshot.png"})
 			print("Screenshot taken")
 			print("Closing browser")
 			await browser.close()
 
 			# Send message & cleanup
 			mail.sendMessage(job)
-			os.remove("../data/screenshot.png")
+			os.remove("./data/screenshot.png")
 
 		await asyncio.sleep(3600)
 
