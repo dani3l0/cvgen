@@ -3,6 +3,7 @@ package webserver
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 )
 
 type CV struct {
@@ -31,19 +32,26 @@ func apiSetCurrentCV(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "invalid json", http.StatusBadRequest)
 		return
 	}
+	for i := range len(GeneratedCVs) {
+		sel := i == msg.Id
+		GeneratedCVs[i].Selected = sel
+		if sel {
+			CurrentCV = GeneratedCVs[i]
+		}
+	}
 	w.Write([]byte("OK"))
 }
 
 func apiGetCurrentCV(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(GeneratedCVs)
+	json.NewEncoder(w).Encode(CurrentCV)
 }
 
 func apiSaveCurrentCV(w http.ResponseWriter, r *http.Request) {
-	var msg CV
-	if err := json.NewDecoder(r.Body).Decode(&msg); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&CurrentCV); err != nil {
 		http.Error(w, "invalid json", http.StatusBadRequest)
 		return
 	}
+	CurrentCV.Modified = time.Now().Format("2006-01-02 15:04:05")
 	w.Write([]byte("OK"))
 }

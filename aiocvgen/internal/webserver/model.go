@@ -62,7 +62,7 @@ func runGeneration() {
 			GeneratedCVs = append(GeneratedCVs, CV{
 				Id:        len(GeneratedCVs),
 				Name:      fmt.Sprintf("Resume #%d", len(GeneratedCVs)+1),
-				Html:      fmt.Sprintf("<html>%s</html>", html[0]),
+				Html:      fmt.Sprintf("<html%s</html>", html[0]),
 				Generated: timex,
 				Modified:  "never",
 				Selected:  false,

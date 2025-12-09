@@ -8,14 +8,17 @@
 </head>
 
 <body>
-	<div class="editor">
+	<div id="status"></div>
+	<div class="nothing hidden">No CV selected. Go to 'Choose' tab and select one for editing.</div>
+	<div class="editor hidden">
 		<div class="left">
 			<div>
 				<div class="h1">Information</div>
 				<div class="entry"><i>Is editable</i><b id="contenteditableInfo"></b></div>
 				<div class="entry"><i>Zoom level</i><b id="zoomLevelInfo"></b></div>
-				<div class="entry"><i>Generated</i><b>true</b></div>
-				<div class="entry"><i>Modified</i><b>true</b></div>
+				<div class="entry"><i>Generated</i><b id="generatedInfo"></b></div>
+				<div class="entry"><i>Modified</i><b id="modifiedInfo"></b></div>
+				<div class="entry"><i>Size</i><b id="sizeInfo"></b></div>
 				<br><br>
 			</div>
 			<div>
@@ -25,20 +28,37 @@
 					<button>Save</button>
 				</div>
 				<div class="entry">
-					<input type="checkbox" oninput="document.querySelector('.left').classList.toggle('wide')" /><p>Show control panel on top</p>
+					<input type="checkbox" oninput="document.querySelector('.editor').classList.toggle('narrow')" /><p>Show control panel on top</p>
 				</div>
 				<div class="entry">
 					<input type="range" min="0.25" max="2.5" step="0.05" value="1" oninput="zoomLevel(this.value)" /><p>Zoom</p><p id="zoomLevel"></p>
 				</div>
+			</div><br>
+			<div>
+				<div class="h1">Export</div>
+				<div>
+					<button onclick="downloadHtml()">Download HTML</button>
+					<button onclick="document.querySelector('iframe').contentWindow.print()">Print</button>
+				</div>
 			</div>
 		</div>
 		<div class="right">
-			<iframe class="cv" srcdoc='<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Simple HTML Page</title> </head> <body> <h1>Hello, World!</h1> <p>This is a very basic HTML page.</p> <p>Here is a link to <a href="https://www.google.com">Google</a>.</p> <ul> <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> </ul> </body> </html>'></iframe>
+			<iframe class="cv" scrolling="no"></iframe>
 		</div>
 	</div>
 </body>
 
 <script>
+	document.addEventListener("DOMContentLoaded", async () => {
+		let resp = await fetch2("getCurrentCV")
+		if (!resp.ok || !resp.json.selected) return document.querySelector(".nothing").classList.remove("hidden")
+		document.querySelector("#generatedInfo").innerText = resp.json.generated
+		document.querySelector("#modifiedInfo").innerText = resp.json.modified
+		document.querySelector("iframe").srcdoc = resp.json.html
+		checkEditable()
+		document.querySelector(".editor").classList.remove("hidden")
+	})
+
 	function zoomLevel(level) {
 		let text = `x${parseFloat(level).toFixed(2)}`
 		document.querySelector('#zoomLevel').innerText = text
@@ -55,7 +75,8 @@
 		for (let tag of tags) {
 			let elems = iframe.contentDocument.querySelectorAll(tag)
 			for (let elem of elems) {
-				elem.setAttribute("contenteditable", editable)
+				if (editable) elem.setAttribute("contenteditable", true)
+				else elem.removeAttribute("contenteditable")
 			}
 		}
 		checkEditable()
@@ -70,26 +91,69 @@
 		return yes
 	}
 	checkEditable()
+
+	function getHtml() {
+		return document.querySelector("iframe").contentDocument.documentElement.innerHTML
+	}
+
+	function downloadHtml() {
+		let filename = "cvgen-"+new Date().toISOString()
+		if (document.querySelector("#contenteditableInfo").innerText.includes("true")) filename += "-editable"
+		filename += ".html"
+		let element = document.createElement('a')
+		element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(getHtml()))
+		element.setAttribute('download', filename)
+		element.style.display = 'none'
+		document.body.appendChild(element)
+		element.click()
+		document.body.removeChild(element)
+	}
+
+	function checkSize() {
+		let textEncoder = new TextEncoder()
+		let bytes = textEncoder.encode(getHtml()).length
+		document.querySelector("#sizeInfo").innerText = bytes+" B"
+	}
+	setInterval(checkSize, 1000)
 </script>
 
 <style>
 	.editor {
 		display: flex;
 		align-items: flex-start;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		flex-direction: row;
 		gap: 12px;
 	}
-	.left.wide {
+	.narrow {
+		flex-direction: column;
+	}
+	.left {
 		display: flex;
 		align-items: flex-start;
-		justify-content: space-around;
+		flex-direction: column;
+	}
+	.narrow .left {
+		gap: 8px;
 		width: 100%;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.narrow .left > div {
+		flex: 1;
+		min-width: 240px;
+		max-width: 360px;
 	}
 	.right {
-		display: flex;
 		width: fit-content;
+		display: flex;
 		justify-content: center;
 		margin: 0 auto;
+		flex: 1;
+	}
+	.narrow .right {
+		width: 100%;
 	}
 	p {
 		margin: 0;

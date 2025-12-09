@@ -7,9 +7,13 @@ import (
 )
 
 func apiGetConfig(w http.ResponseWriter, r *http.Request) {
-	resp := config.Get()
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(resp)
+	json.NewEncoder(w).Encode(config.Get())
+}
+
+func apiGetRuntimeConfig(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(generatorConfig)
 }
 
 func apiSendConfig(w http.ResponseWriter, r *http.Request) {

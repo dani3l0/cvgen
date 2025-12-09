@@ -11,7 +11,7 @@ I have 1 year of commercial experience in Django programming. Also, I'm familiar
 `
 
 const defaultPromptHtmlResponseFormat = `
-HTML resume demands:
+HTML look/layout demands:
 - add CSS so it looks better
 - a two-column style
 - add 'margin: 0; padding: 0' to <body>

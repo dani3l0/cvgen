@@ -16,6 +16,7 @@ func Run(staticFiles http.FileSystem) error {
 	mux = http.NewServeMux()
 
 	mux.HandleFunc("/api/getConfig", apiGetConfig)
+	mux.HandleFunc("/api/getRuntimeConfig", apiGetRuntimeConfig)
 	mux.HandleFunc("/api/sendConfig", apiSendConfig)
 	mux.HandleFunc("/api/getCurrentCV", apiGetCurrentCV)
 	mux.HandleFunc("/api/setCurrentCV", apiSetCurrentCV)
@@ -25,6 +26,7 @@ func Run(staticFiles http.FileSystem) error {
 	mux.HandleFunc("/api/cancelGeneration", apiCancelGeneration)
 	mux.HandleFunc("/api/generationStatus", apiGenerationStatus)
 	mux.Handle("/", http.FileServer(staticFiles))
+	generatorConfig = config.Get()
 
 	srv := &http.Server{
 		Addr:         config.Get().ListenAddr + ":" + strconv.Itoa(config.Get().ListenPort),

@@ -118,3 +118,12 @@ hr {
 	color: #0F8;
 	margin: 4px auto;
 }
+
+.nothing {
+	color: #888;
+	margin: 12px auto;
+	text-align: center;
+}
+.hidden {
+	display: none;
+}

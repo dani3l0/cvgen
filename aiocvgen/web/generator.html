@@ -57,7 +57,7 @@
 		<div id="progress" style="--progress: 0"></div>
 	</div>
 	<div class="actions">
-		<button onclick="window.location.reload()">Reset</button>
+		<button onclick="fetchConf(false)">Reset</button>
 		<button onclick="syncConf(true)">Save</button>
 		<button onclick="generationStatus(true)">Status</button>
 		<button onclick="runGeneration()">Run</button>
@@ -75,10 +75,10 @@
 	const setConf = (id, value) => {
 		document.querySelector("#"+id).value = value
 	}
-	const fetchConf = async () => {
+	const fetchConf = async (runtimeone = true) => {
 		let status = document.querySelector("#status")
 		notif("Downloading config")
-		let raw = await fetch2("getConfig")
+		let raw = await fetch2(runtimeone ? "getRuntimeConfig" : "getConfig")
 		config = raw.json
 		setConf("config-ollama-url", config["ollama_url"])
 		setConf("config-ollama-model", config["ollama_model"])
