@@ -10,20 +10,20 @@ import (
 )
 
 // Raw generate function that handles everything
-func generate(systemPrompt string, prompt string, think bool) string {
+func generate(systemPrompt string, prompt string, conf config.Conf) string {
 	// Client setup
 	var resp = ""
 	Stage = StageLoading
 
 	// Generation!
 	client.Generate(context.Background(), &api.GenerateRequest{
-		Model:  config.Get().OllamaModel,
+		Model:  conf.OllamaModel,
 		Prompt: prompt,
 		System: systemPrompt,
-		Stream: utils.Bool(config.Get().OllamaStream),
-		Think:  &api.ThinkValue{Value: think},
+		Stream: utils.Bool(conf.OllamaStream),
+		Think:  &api.ThinkValue{Value: conf.OllamaThink},
 		Options: map[string]any{
-			"temperature": config.Get().OllamaTemperature,
+			"temperature": conf.OllamaTemperature,
 		},
 	}, func(gr api.GenerateResponse) error {
 		if Stage == StageIdle {
@@ -50,15 +50,16 @@ func generate(systemPrompt string, prompt string, think bool) string {
 
 // Uses default (empty) system prompt for general use
 func Generate(prompt string) string {
-	x := generate("", prompt, false)
+	c := config.Get()
+	c.OllamaThink = false
+	x := generate("", prompt, c)
 	return x
 }
 
 // Uses non-default system prompt that helps in generating HTML CVs
-func GenerateResume(prompt string, think bool) string {
+func GenerateResume(prompt string, conf config.Conf) string {
 	return generate(
-		"You are an expert resume writer specializing in generating resumes in HTML and CSS. Your goal is to produce a well-formatted, professional resume in a single HTML file. Maintain a professional tone and match the language of the provided instructions.",
-		prompt,
-		think,
+		"You are an expert specializing in generating resumes in HTML and CSS. Your goal is to produce a well-formatted, professional resume in a single HTML file. Maintain a professional tone and match the language of the provided instructions. Use only provided information about candidate.",
+		prompt, conf,
 	)
 }

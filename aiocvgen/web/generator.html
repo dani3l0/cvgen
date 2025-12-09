@@ -26,7 +26,7 @@
 			<input id="config-ollama-batch" type="number" min="1" max="10" step="1">
 		</div>
 		<div class="input">
-			<div>Think</div>
+			<div>Think<br>(depends on model)</div>
 			<input id="config-ollama-think" type="checkbox">
 		</div><br>
 		<hr>
@@ -88,7 +88,7 @@
 		setConf("template-options", config["llm_template_options"])
 		setConf("job-offer", config["llm_job_offer"])
 		setConf("other-notes", config["llm_other_notes"])
-		document.querySelector("#config-ollama-think").checked = config["ollama_think"]
+		if (config["ollama_think"]) document.querySelector("#config-ollama-think").setAttribute("checked", "true")
 		notif("Config initialized")
 	}
 	const syncConf = async (server) => {

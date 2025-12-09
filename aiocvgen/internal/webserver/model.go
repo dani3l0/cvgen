@@ -35,24 +35,24 @@ func runGeneration() {
 		}
 		var prompt string
 		if len(generatorConfig.LlmAboutMe) > 10 {
-			prompt := "# About me information\n"
+			prompt := "# Candidate information\n"
 			prompt += generatorConfig.LlmAboutMe + "\n\n"
 		}
 		if len(generatorConfig.LlmJobOffer) > 10 {
-			prompt += "# Job offer contents\n"
+			prompt += "# Job offer\n"
 			prompt += generatorConfig.LlmJobOffer
 		}
 		if len(generatorConfig.LlmTemplateOptions) > 10 {
-			prompt += "# HTML format and look demands\n"
+			prompt += "# Target HTML format and look\n"
 			prompt += generatorConfig.LlmTemplateOptions + "\n\n"
 		}
 		if len(generatorConfig.LlmOtherNotes) > 10 {
-			prompt += "# Other important notes\n"
+			prompt += "# Important notes\n"
 			prompt += generatorConfig.LlmOtherNotes + "\n\n"
 		}
 
 		prompt = strings.Trim(prompt, "\n")
-		resp := ollama.GenerateResume(prompt, generatorConfig.OllamaThink)
+		resp := ollama.GenerateResume(prompt, generatorConfig)
 		html := strings.SplitN(resp, "<html", 2)
 
 		if len(html) > 1 {
