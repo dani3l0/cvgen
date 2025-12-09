@@ -59,7 +59,12 @@ func Generate(prompt string) string {
 // Uses non-default system prompt that helps in generating HTML CVs
 func GenerateResume(prompt string, conf config.Conf) string {
 	return generate(
-		"You are an expert specializing in generating resumes in HTML and CSS. Your goal is to produce a well-formatted, professional resume in a single HTML file. Maintain a professional tone and match the language of the provided instructions. Use only provided information about candidate.",
+		`You are an expert specializing in generating resumes. Match the language of the provided instructions. Your goal is to produce a well-formatted, professional resume in a single HTML file. You will get information you need to strictly follow:
+		- Candidate info - fully-detailed person description, like names, contact, life, experience and everything else
+		- Job offer - a copy-pasted job announcement content listed on employer's website
+		- HTML layout/look options - how exactly HTML-based resume should be stylized
+		- Notes - other general but still important information
+		Sections are separated by markdown-formatted titles starting with #`,
 		prompt, conf,
 	)
 }

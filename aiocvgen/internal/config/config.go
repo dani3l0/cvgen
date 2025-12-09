@@ -25,7 +25,7 @@ var Defaults = Conf{
 	ListenPort:         54321,
 	OllamaUrl:          "127.0.0.1:11434",
 	OllamaModel:        "gpt-oss:20b",
-	OllamaThink:        false,
+	OllamaThink:        true,
 	OllamaTemperature:  0.5,
 	OllamaStream:       true,
 	Batch:              3,

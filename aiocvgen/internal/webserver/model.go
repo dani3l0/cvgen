@@ -33,24 +33,14 @@ func runGeneration() {
 		if cancelling {
 			break
 		}
-		var prompt string
-		if len(generatorConfig.LlmAboutMe) > 10 {
-			prompt := "# Candidate information\n"
-			prompt += generatorConfig.LlmAboutMe + "\n\n"
-		}
-		if len(generatorConfig.LlmJobOffer) > 10 {
-			prompt += "# Job offer\n"
-			prompt += generatorConfig.LlmJobOffer
-		}
-		if len(generatorConfig.LlmTemplateOptions) > 10 {
-			prompt += "# Target HTML format and look\n"
-			prompt += generatorConfig.LlmTemplateOptions + "\n\n"
-		}
-		if len(generatorConfig.LlmOtherNotes) > 10 {
-			prompt += "# Important notes\n"
-			prompt += generatorConfig.LlmOtherNotes + "\n\n"
-		}
-
+		prompt := "# Candidate information:\n"
+		prompt += generatorConfig.LlmAboutMe + "\n-----\n"
+		prompt += "# Job offer:\n"
+		prompt += generatorConfig.LlmJobOffer + "\n-----\n"
+		prompt += "# Target HTML format and look:\n"
+		prompt += generatorConfig.LlmTemplateOptions + "\n-----\n"
+		prompt += "# Important notes:\n"
+		prompt += generatorConfig.LlmOtherNotes + "\n\n"
 		prompt = strings.Trim(prompt, "\n")
 		resp := ollama.GenerateResume(prompt, generatorConfig)
 		html := strings.SplitN(resp, "<html", 2)

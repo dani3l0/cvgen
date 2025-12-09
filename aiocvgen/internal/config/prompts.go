@@ -1,27 +1,21 @@
 package config
 
-const defaultPromptAboutMe = `
-- Full Name: Jonathan Wick
+const defaultPromptAboutMe = `- Full Name: Jonathan Wick
 - Phone: +48 347 374 743
 - Email: no@rep.ly
 - Location: Warsaw, PL
 
 I am a true Python programmer. I have more than 50 projects on GitHub, invented AI CV generation engine and been on scholarship at NASA in Poland.
-I have 1 year of commercial experience in Django programming. Also, I'm familiar with SQL databases.
-`
+I have 1 year of commercial experience in Django programming. Also, I'm familiar with SQL databases.`
 
-const defaultPromptHtmlResponseFormat = `
-HTML look/layout demands:
-- add CSS so it looks better
+const defaultPromptHtmlResponseFormat = `- add CSS so it looks better
 - a two-column style
 - add 'margin: 0; padding: 0' to <body>
 - light-red pastel background on the left column
 - try to not write very long texts on one side - it will exceed A4 dimensions
-- use emojis at short personal information like contact, location
-`
+- use emojis at short personal information like contact, location`
 
-const defaultPromptJobOffer = `
-Now Hiring: Junior Administrative Assistant at Bloom & Birch Floral Designs
+const defaultPromptJobOffer = `Now Hiring: Junior Administrative Assistant at Bloom & Birch Floral Designs
 
 Bloom & Birch Floral Designs, a vibrant and growing floral studio in the heart of Meadowbrook, is seeking a reliable and detail-oriented Junior Administrative Assistant to join our team! We're a small, friendly business passionate about creating beautiful floral arrangements for weddings, events, and everyday occasions.
 
@@ -44,9 +38,6 @@ Ability to work independently and as part of a team.
 A positive attitude and a willingness to learn.
 To Apply:
 
-Please send your resume and a brief cover letter to Mr. Silas Blackwood at silas.blackwood@bloomandbirch.com . We look forward to hearing from you!
-`
+Please send your resume and a brief cover letter to Mr. Silas Blackwood at silas.blackwood@bloomandbirch.com . We look forward to hearing from you!`
 
-const defaultPromptNotes = `
-Generate HTML contents strictly respecting above prompt. Once finished, check again and correct possible caveats.
-`
+const defaultPromptNotes = `Try to impress the recruiter. Also, remember to generate a resume with a good chance to pass ATS!`
