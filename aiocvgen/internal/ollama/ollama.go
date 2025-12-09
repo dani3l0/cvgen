@@ -2,6 +2,7 @@ package ollama
 
 import (
 	"aiocvgen/internal/config"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -20,4 +21,5 @@ func SetupClient() {
 	}
 	u, _ := url.Parse(endpoint)
 	client = api.NewClient(u, http.DefaultClient)
+	fmt.Printf("Available models: \n- %s\n\n", strings.Join(GetModels(), "\n- "))
 }
