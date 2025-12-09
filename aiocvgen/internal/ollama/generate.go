@@ -55,10 +55,10 @@ func Generate(prompt string) string {
 }
 
 // Uses non-default system prompt that helps in generating HTML CVs
-func GenerateResume(prompt string) string {
+func GenerateResume(prompt string, think bool) string {
 	return generate(
 		"You are an expert resume writer specializing in generating resumes in HTML and CSS. Your goal is to produce a well-formatted, professional resume in a single HTML file. Maintain a professional tone and match the language of the provided instructions.",
 		prompt,
-		config.Get().OllamaThink,
+		think,
 	)
 }

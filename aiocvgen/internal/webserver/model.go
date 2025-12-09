@@ -52,7 +52,7 @@ func runGeneration() {
 		}
 
 		prompt = strings.Trim(prompt, "\n")
-		resp := ollama.GenerateResume(prompt)
+		resp := ollama.GenerateResume(prompt, generatorConfig.OllamaThink)
 		html := strings.SplitN(resp, "<html", 2)
 
 		if len(html) > 1 {
