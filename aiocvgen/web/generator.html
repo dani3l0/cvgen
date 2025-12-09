@@ -88,7 +88,7 @@
 		setConf("template-options", config["llm_template_options"])
 		setConf("job-offer", config["llm_job_offer"])
 		setConf("other-notes", config["llm_other_notes"])
-		document.querySelector("#config-ollama-think").setAttribute("checked", config["ollama_think"])
+		document.querySelector("#config-ollama-think").checked = config["ollama_think"]
 		notif("Config initialized")
 	}
 	const syncConf = async (server) => {
@@ -96,7 +96,7 @@
 		config.ollama_model = getConf("config-ollama-model")
 		config.ollama_temperature = parseFloat(getConf("config-ollama-temperature"))
 		config.batch = parseFloat(getConf("config-ollama-batch"))
-		config.ollama_think = document.querySelector("#config-ollama-think").getAttribute("checked").includes("true")
+		config.ollama_think = document.querySelector("#config-ollama-think").checked
 		config.llm_about_me = getConf("about-me")
 		config.llm_template_options = getConf("template-options")
 		config.llm_job_offer = getConf("job-offer")
