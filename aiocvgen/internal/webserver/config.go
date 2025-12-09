@@ -24,6 +24,7 @@ func apiSendConfig(w http.ResponseWriter, r *http.Request) {
 	}
 	config.Defaults = msg
 	config.SaveConfig()
+	generatorConfig = config.Get()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(msg)
 }
